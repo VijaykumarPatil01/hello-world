@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        <hl>Welcome</hl>
+        <br>
+        <p>Below are the OPEN projects currently in SOW Tracker.
+            <table border="2" padding="20px">
+                <tr>
+                    <th> Group Name </th>
+                    <th> OPERA Number</th>
+                    <th> Project Description</th>
+                    <th> IA Status</th>
+                    <th> Work Status</th>
+                    <th> NWA Code </th>
+                    <th> Manager Name </th>
+                    <th> Project Status</th>
+                    <th> Approved Amount</th>
+                    <th> Invoiced Amount</th>
+                    <th> Residual Amount</th>
+                </tr>
+                {% for proj in approvedprojs %}
+                    <tr>
+                        <td>{{ proj.group }}</td>
+                        <td>{{ proj.opera_id }}</td>
+                        <td>{{ proj.name }}</td>
+                        {% if proj.ia_status == "A" %}
+                            <td> Approved </td>
+                        {% elif proj.ia_status == "S" %}
+                            <td> Submitted </td>
+                        {% elif proj.ia_status == "I" %}
+                            <td> In Progress </td>
+                        {% endif %}
+
+                        {% if proj.work_status == "R" %}
+                            <td> Requested </td>
+                        {% elif proj.work_status == "W" %}
+                            <td> Awaiting Approval </td>
+                        {% elif proj.work_status == "A" %}
+                            <td> Approved </td>
+                        {% endif %}
+
+                        <td>{{ proj.nwa_code }}</td>
+                        <td>{{ proj.manager }}</td>
+
+                        {% if proj.status == "O" %}
+                            <td> Open </td>
+                        {% elif proj.status == "C" %}
+                            <td> Closed  </td>
+                        {% endif %}
+
+                        <td>{{ proj.approved_amount }}</td>
+                        <td>{{ proj.invoiced_amount }}</td>
+                        <td>{{ proj.residual_amount }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </p>
+
+    <br>
+
+    <a href="{% url 'add_new_project' %}">
+        <button type="submit">Add New Project</button>
+    </a>
+    <a href="{% url 'add_billing_details' %}">
+        <button type="submit">Add Billing Details</button>
+    </a>
+
+    <br>
+    <br>
+    <br>
+    <p>Below are the projects Awaiting Approval
+            <table border="2" padding="20px">
+                <tr>
+                    <th> Group Name </th>
+                    <th> OPERA Number</th>
+                    <th> Project Description</th>
+                    <th> IA Status</th>
+                    <th> Work Status</th>
+                    <th> NWA Code </th>
+                    <th> Manager Name </th>
+                    <th> Project Status</th>
+                    <th> Approved Amount</th>
+                    <th> Invoiced Amount</th>
+                    <th> Residual Amount</th>
+                </tr>
+                {% for proj in waitingproj %}
+                    <tr>
+                        <td>{{ proj.group }}</td>
+                        <td>{{ proj.opera_id }}</td>
+                        <td>{{ proj.name }}</td>
+                        {% if proj.ia_status == "A" %}
+                            <td> Approved </td>
+                        {% elif proj.ia_status == "S" %}
+                            <td> Submitted </td>
+                        {% elif proj.ia_status == "I" %}
+                            <td> In Progress </td>
+                        {% endif %}
+
+                        {% if proj.work_status == "R" %}
+                            <td> Requested </td>
+                        {% elif proj.work_status == "W" %}
+                            <td> Awaiting Approval </td>
+                        {% elif proj.work_status == "A" %}
+                            <td> Approved </td>
+                        {% endif %}
+
+                        <td>{{ proj.nwa_code }}</td>
+                        <td>{{ proj.manager }}</td>
+
+                        {% if proj.status == "O" %}
+                            <td> Open </td>
+                        {% elif proj.status == "C" %}
+                            <td> Closed  </td>
+                        {% endif %}
+
+                        <td>{{ proj.approved_amount }}</td>
+                        <td>{{ proj.invoiced_amount }}</td>
+                        <td>{{ proj.residual_amount }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </p>
+    {% endblock %}

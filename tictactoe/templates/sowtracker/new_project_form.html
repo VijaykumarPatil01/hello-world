@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Enter New Project Details
+<li></li>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'add_new_project' %}">
+        <table border="1">
+            {{ form }}
+        </table>
+        {% csrf_token %}
+        <button type="submit">Add New Project</button>
+    </form>
+{% endblock %}

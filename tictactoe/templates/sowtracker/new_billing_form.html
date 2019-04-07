@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<br>
+<p> Add Billing Details for the Project</p>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'add_billing_details' %}">
+        <table border="1">
+            {{ form }}
+        </table>
+        {% csrf_token %}
+        <br>
+        <button type="submit">Add Billing Details</button>
+    </form>
+{% endblock %}
